@@ -3,14 +3,16 @@ class Board
 
   def initialize(name1, name2)
     @cups = Array.new(14){Array.new}
-    (0..5).each do |i|
-      @cups[i] = [:stone,:stone,:stone,:stone]
-    end
-
+    place_stones
   end
 
   def place_stones
     # helper method to #initialize every non-store cup with four stones each
+      @cups.each_with_index do |arr, i|
+        if i != 6 && i != 13
+          @cups[i] = [:stone,:stone,:stone,:stone]
+        end
+      end
   end
 
   def valid_move?(start_pos)
@@ -23,6 +25,25 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+      pos_cup = @cups[start_pos]
+      
+      current_pos = start_pos
+      while !pos_cup.empty?
+        current_pos += 1
+        ele =  pos_cup.pop
+        if start_pos < 6 && current_pos == 13
+          # dont place in oppont cup 13
+          current_pos += 1
+        elsif start_pos > 6 && current_pos == 6
+
+          #dont place at cup 6
+        end
+        @cups[current_pos].push(ele)
+
+     
+      end
+        
+
   end
 
   def next_turn(ending_cup_idx)

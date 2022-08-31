@@ -12,13 +12,17 @@ class Simon
  
 
   def play
-    # until game_over
-    #   self.take_turn
+    until game_over
+      take_turn
+    end
+
+    game_over_message
+    reset_game
 
   end
 
   def take_turn
-    'calls #show_sequence and #require_sequence'
+    # 'calls #show_sequence and #require_sequence'
     # until game_over
     #     self.show_sequence
     #     self.require_sequence
@@ -26,6 +30,12 @@ class Simon
     #     @sequence_length += 1
         
     # end
+    show_sequence
+    require_sequence
+    if game_over == false
+      round_success_message
+      @sequence_length += 1
+    end
 
   end
 

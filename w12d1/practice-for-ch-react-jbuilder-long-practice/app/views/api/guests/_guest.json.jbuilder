@@ -1,0 +1,1 @@
+json.estract! guest, :name, :age, :favorite_color
